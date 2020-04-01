@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/general.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <title>Website Summarizer</title>
+  </head>
+  <body>
+    <div class="h1 text-center mb-5">URL Summarization</div>
+
+    <div class="d-flex flex-column justify-content-center mx-5">
+      <% payload.forEach(sentence => { %>
+      <div class="">
+        <p><%= sentence %></p>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>
