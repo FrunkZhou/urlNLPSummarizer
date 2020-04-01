@@ -4,7 +4,12 @@ const configureExpress = require("./config/express");
 
 const app = configureExpress();
 
-app.listen(8000);
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 
-console.log("Server running on port 8000.");
+app.listen(port);
+
+console.log(`Server running on port ${port}.`);
 module.exports = app;
