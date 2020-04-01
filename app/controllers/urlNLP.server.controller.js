@@ -11,26 +11,32 @@ exports.renderURLForm = (req, res) => {
 exports.scrapeURL = async (req, res, next) => {
   const sentences = [];
 
-  // Get the full HTML content from URL
-  var htmlContent = await axios.get(req.query.summarizeURL);
+  try {
+    // Get the full HTML content from URL
+    var htmlContent = await axios.get(req.query.summarizeURL);
 
-  // Load the HTML into the Cheerio parser
-  var result = cheerio.load(htmlContent.data);
+    // Load the HTML into the Cheerio parser
+    var result = cheerio.load(htmlContent.data);
 
-  // Get sentences of every paragraph into the array
-  // Naive way to scraping text content - doesn't support React/Angular apps that maintain their
-  // data inside JSON objects
-  result("p").each((index, element) => {
-    // For each paragraph element, splice the content into sentences and store each into the array
-    compromise(result(element).text())
-      .sentences()
-      .out("array")
-      .forEach(sentence => {
-        sentences.push(sentence);
-      });
-  });
-  req.sentences = sentences;
-  next();
+    // Get sentences of every paragraph into the array
+    // Naive way to scraping text content - doesn't support React/Angular apps that maintain their
+    // data inside JSON objects
+    result("p").each((index, element) => {
+      // For each paragraph element, splice the content into sentences and store each into the array
+      compromise(result(element).text())
+        .sentences()
+        .out("array")
+        .forEach(sentence => {
+          sentences.push(sentence);
+        });
+    });
+    req.sentences = sentences;
+    next();
+  } catch (error) {
+    res.render("urlForm", {
+      error: "Unable to access website URL - Try a different website."
+    });
+  }
 };
 
 exports.processText = (req, res, next) => {

@@ -13,8 +13,25 @@
   </head>
   <body>
     <div class="h-100 d-flex flex-column justify-content-center">
+      <div
+        class="alert text-center
+        <% if(locals.error){ %>
+          show
+        <% } %> alert-danger alert-dismissible fade fixed-top"
+        role="alert"
+        id="statusMsg"
+      >
+        <% if(locals.error){ %> <%= error %> <% } %>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="h1 text-center mb-5">URL to summarize</div>
-
       <div class="d-flex justify-content-center">
         <form method="GET" action="/processNLP" class="col-md-3">
           <div class="form-group">
