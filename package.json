@@ -16,6 +16,7 @@
     "compression": "^1.6.0",
     "compromise": "^13.1.1",
     "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
     "ejs": "^2.5.2",
     "express": "^4.17.1",
     "express-session": "^1.14.1",
